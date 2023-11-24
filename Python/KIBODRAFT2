@@ -1,0 +1,79 @@
+class Student:
+    def __init__(self, name, student_id, exam1, exam2, project):
+        self.name = name
+        self.student_id = student_id
+        self.exam1 = exam1
+        self.exam2 = exam2
+        self.project = project
+        self.final_grade = 0.3 * exam1 + 0.3 * exam2 + 0.4 * project
+
+def add_student(students):
+    name = input("Enter the name of the new student: ")
+    student_id = int(input("Enter the student ID: "))
+    exam1 = float(input("Enter the grade for Exam 1: "))
+    exam2 = float(input("Enter the grade for Exam 2: "))
+    project = float(input("Enter the grade for the final project: "))
+    
+    new_student = Student(name, student_id, exam1, exam2, project)
+    students.append(new_student)
+    print("Student added successfully.")
+
+def update_student(students):
+    student_id = int(input("Enter the student ID to update: "))
+    
+    for student in students:
+        if student.student_id == student_id:
+            print(f"Updating information for {student.name}")
+            student.name = input("Enter the new name: ")
+            student.exam1 = float(input("Enter the new grade for Exam 1: "))
+            student.exam2 = float(input("Enter the new grade for Exam 2: "))
+            student.project = float(input("Enter the new grade for the final project: "))
+            student.final_grade = 0.3 * student.exam1 + 0.3 * student.exam2 + 0.4 * student.project
+            print("Student information updated successfully.")
+            return
+    
+    print("Student not found.")
+
+def calculate_final_grades(students):
+    for student in students:
+        student.final_grade = 0.3 * student.exam1 + 0.3 * student.exam2 + 0.4 * student.project
+    print("Final grades calculated successfully.")
+
+def view_final_grade_report(students):
+    sorted_students = sorted(students, key=lambda x: x.student_id)
+    
+    print("\nFinal Grade Report:")
+    print("{:<15} {:<10} {:<10} {:<10} {:<10} {:<10}".format("Name", "Student ID", "Exam 1", "Exam 2", "Project", "Final Grade"))
+    for student in sorted_students:
+        print("{:<15} {:<10} {:<10} {:<10} {:<10} {:<10}".format(student.name, student.student_id, student.exam1, student.exam2, student.project, student.final_grade))
+
+def main():
+    students = []
+
+    while True:
+        print("\nMenu:")
+        print("1. Add a new student")
+        print("2. Update an existing student's information")
+        print("3. Calculate final grades")
+        print("4. View final grade report")
+        print("5. Exit the program")
+
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            add_student(students)
+        elif choice == "2":
+            update_student(students)
+        elif choice == "3":
+            calculate_final_grades(students)
+        elif choice == "4":
+            view_final_grade_report(students)
+        elif choice == "5":
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 5.")
+
+if __name__ == "__main__":
+    main()
+

@@ -1,0 +1,93 @@
+def initialize_student_array():
+    # Initialize student array with empty data
+    students = []
+
+    # Prompt user to enter student information
+    while True:
+        student_name = input("Enter student name: ")
+        student_id = input("Enter student ID: ")
+        exam1_grade = float(input("Enter Exam 1 grade: "))
+        exam2_grade = float(input("Enter Exam 2 grade: "))
+        project_grade = float(input("Enter Project grade: "))
+
+        # Create student dictionary and append it to the student array
+        student = {
+            "name": student_name,
+            "id": student_id,
+            "exam1": exam1_grade,
+            "exam2": exam2_grade,
+            "project": project_grade,
+            "final_grade": None
+        }
+        students.append(student)
+
+        # Check if user wants to add more students
+        choice = input("Add another student (Y/N): ")
+        if choice.lower() != "y":
+            break
+
+    return students
+
+
+def sort_student_array(students):
+    # Sort student array by student ID
+    students.sort(key=lambda student: student["id"])
+
+
+def calculate_final_grades(students):
+    # Calculate final grade for each student
+    for student in students:
+        final_grade = (0.3 * student["exam1"]) + (0.3 * student["exam2"]) + (0.4 * student["project"])
+        student["final_grade"] = final_grade
+
+
+def view_final_grade_report(students):
+    # Print header for final grade report
+    print("\nFinal Grade Report")
+    print("-----------------------")
+    print("Student ID\t\tName\t\tFinal Grade")
+
+    # Print final grade for each student
+    for student in students:
+        print(f"{student['id']}\t\t{student['name']}\t\t{student['final_grade']}")
+
+
+def main_menu():
+    # Display main menu
+    while True:
+        print("\nMain Menu")
+        print("---------")
+        print("1. Add a new student")
+        print("2. Update an existing student's information")
+        print("3. Calculate final grades")
+        print("4. View final grade report")
+        print("5. Exit the program")
+
+        # Get user's choice
+        choice = int(input("Enter your choice (1-5): "))
+
+        # Handle user's choice
+        if choice == 1:
+            add_new_student()
+        elif choice == 2:
+            update_existing_student()
+        elif choice == 3:
+            calculate_final_grades(students)
+        elif choice == 4:
+            view_final_grade_report(students)
+        elif choice == 5:
+            print("Exiting program...")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 5.")
+
+
+# Initialize student array
+students = initialize_student_array()
+
+# Sort student array by student ID
+sort_student_array(students)
+
+# Start main menu
+main_menu()
+
