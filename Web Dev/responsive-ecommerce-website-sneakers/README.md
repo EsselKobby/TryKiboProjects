@@ -1,6 +1,4 @@
 # Responsive Ecommerce Website Sneakers
-https://www.youtube.com/watch?v=-EM4uVJm9qo
-### Responsive Ecommerce Website Sneakers
 
 - Responsive Ecommerce Website Using HTML and CSS from our knowledge through the Kibo Web Dev Fundamentals
 - Contains a product page.
